@@ -1,23 +1,34 @@
 import discord
-from discord.utils import get
 
-client = discord.Client()
 intents = discord.Intents.default()
+intents.presences = True
 intents.members = True
 
-ilc_guild = 705969305715474683
-trish_id = 164555865171558402
+client = discord.Client(intents=intents)
+
 @client.event
 async def on_ready():
-    print("We have logged in as {0.user}".format(client))
+    print("We have logged in as {0.user}\n".format(client))
+    await messageTrish()
 
-    trish = await client.get_guild(ilc_guild).fetch_member(trish_id)
-     
-    async for member in client.get_guild(ilc_guild).fetch_members(limit=15):
-        print(member.name, str(member.desktop_status))
-        #if member.name == "jadb":
-           # channel = await member.create_dm()
-           # await channel.send("AL  i am SO good at programming")
+async def messageTrish():
+    for guild in client.guilds:
+        async for member in guild.fetch_members(limit=15):
+            if member.nick  == "Trish":
+                channel = await member.create_dm()
+                message = input(str("uwu boy: "))
+                response = await member.send(message)
 
+@client.event
+async def on_message(message):
+    if not message.author.bot:
+        if message.author.name == "patcat":
+            print("uwu girl: " +  message.content)
+            await messageTrish()
 
 client.run('NzY1NTA2MDE2NjY1Nzk2NjE4.X4VzCA.gYYWr-4tEu52LYlPnup_JKn3eF8')
+# detect online / offline
+# instagram scraper
+# message image
+# deploy to heroku
+
