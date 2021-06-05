@@ -14,7 +14,7 @@ async def on_ready():
 async def messageTrish():
     for guild in client.guilds:
         async for member in guild.fetch_members(limit=15):
-            if member.nick  == "Trish":
+            if member.name  == "patcat":
                 channel = await member.create_dm()
                 message = input(str("uwu boy: "))
                 response = await member.send(message)
@@ -27,8 +27,4 @@ async def on_message(message):
             await messageTrish()
 
 client.run('NzY1NTA2MDE2NjY1Nzk2NjE4.X4VzCA.gYYWr-4tEu52LYlPnup_JKn3eF8')
-# detect online / offline
-# instagram scraper
-# message image
-# deploy to heroku
 
