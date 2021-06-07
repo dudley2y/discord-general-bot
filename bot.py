@@ -21,11 +21,14 @@ async def on_voice_state_update(member, before, after):
         ilc = client.get_guild(ILC_guild_id) 
         channels = ilc.voice_channels                           ## grabs all channels in the server       
         curr_users = []                                         ## all users CURRENTLY in a voice channel
+        member_channel_joined = None
 
         print("Current Users online: ", end = " ")
         for voice_channel in channels:                  
             for user in voice_channel.members:
                 curr_users.append(user)
+                if user == member:
+                    member_channel_joined = voice_channel.name
                 print(user.name + " " )
 
 
@@ -41,7 +44,7 @@ async def on_voice_state_update(member, before, after):
                 if not curr_line_in_voice:
                     async for user in ilc.fetch_members(limit=ilc.member_count):
                         if user.name == line:
-                            await user.send(str(member.name) + " joined ILC")
+                            await user.send(str(member.name) + " joined ILC at " + str(member_channel_joined))
                             print("Sending " + user.name + " a message") 
                             break
 
