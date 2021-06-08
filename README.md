@@ -1,6 +1,6 @@
 # General Discord Bot
 
-This is a general bot that I'm gonna do whatever I feel like doing :) 
+This is a general bot deployed on heroku that I'm gonna do whatever I feel like doing :) 
 
 ## Installation and Prerequisites  
 
@@ -11,8 +11,8 @@ python3 -m pip install -U discord.py
 ```
 
 There will be 2 environment variables necessary 
-    1. DISCORD_BOT_TOKEN
-    2. DISCORD_BOT_TEST_TOKEN
+1. DISCORD_BOT_TOKEN
+2. DISCORD_BOT_TEST_TOKEN
 
 ## Usage 
 
@@ -28,3 +28,18 @@ One can test using
 ```bash
 python bot.py test
 ```
+
+
+## Architectures and Algorithims 
+
+### message service
+user_joined = user that joined
+users_online[] 
+for all channels:
+    append all users currently in channels
+
+for person in message file:
+    if (person!= user_joined) and (user not in a channel):
+        message person that user joined 
+
+    
