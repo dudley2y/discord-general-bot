@@ -1,0 +1,30 @@
+# General Discord Bot
+
+This is a general bot that I'm gonna do whatever I feel like doing :) 
+
+## Installation and Prerequisites  
+
+Use the package manager pip to install discord.py 
+
+```bash
+python3 -m pip install -U discord.py
+```
+
+There will be 2 environment variables necessary 
+    1. DISCORD_BOT_TOKEN
+    2. DISCORD_BOT_TEST_TOKEN
+
+## Usage 
+
+Currently the bot can 
+    1. notify users when someone join's ILC 
+
+One can officially deploy using 
+```bash
+python bot.py
+```
+
+One can test using 
+```bash
+python bot.py test
+```
