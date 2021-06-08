@@ -34,7 +34,7 @@ python bot.py test
 ```
 
 
-## Architectures and Algorithims 
+## Architectures and Algorithms 
 
 ### message service
 ```python
