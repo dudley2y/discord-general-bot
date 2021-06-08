@@ -1,4 +1,6 @@
 import discord
+import os
+import sys
 
 intents = discord.Intents.default()
 intents.presences = True
@@ -7,6 +9,8 @@ intents.voice_states = True
 client = discord.Client(intents=intents)
 
 ILC_guild_id = 705969305715474683
+
+token = os.getenv("DISCORD_BOT_TEST_TOKEN") if sys.argv[-1] == "test" else os.getenv("DISCORD_BOT_TOKEN") 
 
 @client.event
 async def on_ready():
@@ -48,7 +52,7 @@ async def on_voice_state_update(member, before, after):
                             print("Sending " + user.name + " a message") 
                             break
 
-client.run('NzY1NTA2MDE2NjY1Nzk2NjE4.X4VzCA.gYYWr-4tEu52LYlPnup_JKn3eF8')
+client.run(token)
 
 '''
 1. see if a person joined a voice_channel
