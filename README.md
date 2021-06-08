@@ -33,6 +33,7 @@ python bot.py test
 ## Architectures and Algorithims 
 
 ### message service
+```python
 user_joined = user that joined
 users_online[] 
 for all channels:
@@ -41,5 +42,5 @@ for all channels:
 for person in message file:
     if (person!= user_joined) and (user not in a channel):
         message person that user joined 
-
+```
     
