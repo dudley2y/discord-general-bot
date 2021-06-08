@@ -18,6 +18,7 @@ async def on_ready():
 
 @client.event
 async def on_voice_state_update(member, before, after):
+    print(after)
 
     if before.channel is None and after.channel is not None:    ## "member" joins a voice channel
         
@@ -53,4 +54,3 @@ async def on_voice_state_update(member, before, after):
                             break
 
 client.run(token)
-
