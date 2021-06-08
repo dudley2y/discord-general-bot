@@ -18,6 +18,7 @@ async def on_ready():
 
 @client.event
 async def on_voice_state_update(member, before, after):
+    print(after)
 
     if before.channel is None and after.channel is not None:    ## "member" joins a voice channel
         
@@ -53,13 +54,3 @@ async def on_voice_state_update(member, before, after):
                             break
 
 client.run(token)
-
-'''
-1. see if a person joined a voice_channel
-2. alert everyone that's either 
-    a. not in the call
-    b. not the same person
-
-    that a person joined the voice_channel
-
-'''

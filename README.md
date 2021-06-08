@@ -47,4 +47,35 @@ for person in message file:
     if (person!= user_joined) and (user not in a channel):
         message person that user joined 
 ```
+
+### message service v2 <- in progress
+The user can opt into whoever they want notified, ideally be server independent
+
+Preprocess: 
+Member can use command  ```bash -notifyMe [user] ``` to add a user to their notify list 
+
+```
+1. check if user is in server
+2. check if Member.id is in database, if not add to database
+3. add user to Member's id to reciever list 
+```
+
+Algorithm 
+```
+1. recieve user joined call 
+2. for all recievers: send message
+```
+
+database structure
+```
+    User: 
+        recievers: 
+            1. 
+            2. 
+    User:
+        recievers:
+            1.
+            2. 
+
+```
     
