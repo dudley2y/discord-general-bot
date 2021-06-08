@@ -17,9 +17,13 @@ There will be 2 environment variables necessary
 ## Usage 
 
 Currently the bot can 
-    1. notify users when someone join's ILC 
+1. notify users when someone join's ILC 
+2. nothing else hehe
 
-One can officially deploy using 
+Future plan
+1. Stream youtube videos
+
+One can run the main bot using 
 ```bash
 python bot.py
 ```
