@@ -14,7 +14,7 @@ token = os.getenv("DISCORD_BOT_TEST_TOKEN") if sys.argv[-1] == "test" else os.ge
 
 @client.event
 async def on_ready():
-    print("We have logged in as {0.user}\n".format(client))
+    print("We have logged in as " + client.user.name)
 
 @client.event
 async def on_voice_state_update(member, before, after):
@@ -54,12 +54,3 @@ async def on_voice_state_update(member, before, after):
 
 client.run(token)
 
-'''
-1. see if a person joined a voice_channel
-2. alert everyone that's either 
-    a. not in the call
-    b. not the same person
-
-    that a person joined the voice_channel
-
-'''
