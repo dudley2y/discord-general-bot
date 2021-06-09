@@ -5,6 +5,7 @@ import sys
 intents = discord.Intents.default()
 intents.presences = True
 intents.members = True
+intents.messages = True
 intents.voice_states = True
 client = discord.Client(intents=intents)
 
@@ -20,7 +21,7 @@ async def on_ready():
 async def on_voice_state_update(member, before, after):
 
     if before.channel is None and after.channel is not None:    ## "member" joins a voice channel
-        
+        print(after.channel.guild)
         print(member.name + " joined a call")
         ilc = client.get_guild(ILC_guild_id) 
         channels = ilc.voice_channels                           ## grabs all channels in the server       
@@ -51,5 +52,16 @@ async def on_voice_state_update(member, before, after):
                             await user.send(str(member.name) + " joined ILC at " + str(member_channel_joined))
                             print("Sending " + user.name + " a message") 
                             break
+
+@client.event
+async def on_message(message): 
+    if message.author == client.user:
+        return 
+    if message.content.startswith("-notifyMe"):
+        userToBeAdded = message.content.split("-notifyMe ",1)[1]
+        print(userToBeAdded)
+
+
+
 
 client.run(token)
