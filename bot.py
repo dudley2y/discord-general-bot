@@ -2,6 +2,10 @@ import discord
 import os
 import sys
 
+if sys.argv[-1] == "test":
+    import subprocess
+    subprocess.run([ "source", "./start.sh"])
+
 intents = discord.Intents.default()
 intents.presences = True
 intents.members = True
@@ -28,7 +32,7 @@ async def on_voice_state_update(member, before, after):
         curr_users = []                                         ## all users CURRENTLY in a voice channel
         member_channel_joined = None
 
-        print("Current Users online: ", end = " ")
+        print("CFurrent Users online: ", end = " ")
         for voice_channel in channels:                  
             for user in voice_channel.members:
                 curr_users.append(user)

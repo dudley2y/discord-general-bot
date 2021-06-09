@@ -10,9 +10,9 @@ Use the package manager pip to install discord.py
 python3 -m pip install -U discord.py
 ```
 
-There will be 2 environment variables necessary 
-1. DISCORD_BOT_TOKEN
-2. DISCORD_BOT_TEST_TOKEN
+There will be 2 environment variables necessary to update in start.sh
+1. DISCORD_BOT_TOKEN = THE DISCORD BOT TOKEN
+2. DISCORD_BOT_TEST_TOKEN = THE DISCORD TEST BOT TOKEN
 
 ## Usage 
 
