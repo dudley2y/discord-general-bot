@@ -14,7 +14,7 @@ There will be 2 environment variables necessary to update in start.sh
 1. DISCORD_BOT_TOKEN = THE DISCORD BOT TOKEN
 2. DISCORD_BOT_TEST_TOKEN = THE DISCORD TEST BOT TOKEN
 
-Make sure you do ```bash  source ./start.sh ``` before any dev 
+Make sure you do ` source ./start.sh ` before any dev 
 ## Usage 
 
 Currently the bot can 
@@ -53,7 +53,7 @@ for person in message file:
 The user can opt into whoever they want notified, ideally be server independent
 
 Preprocess: 
-Member can use command  ```bash -notifyMe [user] ``` to add a user to their notify list 
+Member can use command  `bash -notifyMe [user] ` to add a user to their notify list 
 
 ```
 1. check if user is in server
