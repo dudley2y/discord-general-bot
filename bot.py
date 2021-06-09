@@ -60,7 +60,7 @@ async def on_message(message):
     if message.content.startswith("-notifyMe"):
         userToBeAdded = message.content.split("-notifyMe ",1)[1]
         print(userToBeAdded)
-
+        ## todos here
 
 
 
