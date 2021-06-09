@@ -53,7 +53,7 @@ for person in message file:
 The user can opt into whoever they want notified, ideally be server independent
 
 Preprocess: 
-Member can use command  `bash -notifyMe [user] ` to add a user to their notify list 
+Member can use command  `-notifyMe [user] ` to add a user to their notify list 
 
 ```
 1. check if user is in server
