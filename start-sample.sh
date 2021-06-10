@@ -1,3 +1,4 @@
 #!/bin/bash 
 export DISCORD_BOT_TEST_TOKEN=YOUR DISCORD BOT TOKEN
 export DISCORD_BOT_TOKEN=YOUR DISCORD TEST BOT TOKEN
+export GOOGLE_APPLICATION_CREDENTIALS="/home/user/Downloads/service-account-file.json"

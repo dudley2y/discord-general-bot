@@ -1,6 +1,9 @@
 import discord
 import os
 import sys
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import db
 
 intents = discord.Intents.default()
 intents.presences = True
@@ -9,6 +12,22 @@ intents.messages = True
 intents.voice_states = True
 client = discord.Client(intents=intents)
 
+cred = credentials.Certificate(os.getenv("GOOGLE_APPLICATION_CREDENTIALS"))
+
+firebase_admin.initialize_app(cred, {
+    'databaseURL': 'https://discordbot-83d1d-default-rtdb.firebaseio.com/'
+})
+
+ref = db.reference('/')
+users_ref = ref.child('users')
+
+new_user_ref = users_ref.child("bob2").get()
+
+'''
+new_user_ref.set({
+    'messages': ["hello", "my", "name", "is", "josh"]
+})
+'''
 ILC_guild_id = 705969305715474683
 
 token = os.getenv("DISCORD_BOT_TEST_TOKEN") if sys.argv[-1] == "test" else os.getenv("DISCORD_BOT_TOKEN") 
@@ -59,8 +78,24 @@ async def on_message(message):
         return 
     if message.content.startswith("-notifyMe"):
         userToBeAdded = message.content.split("-notifyMe ",1)[1]
-        print(userToBeAdded)
-        ## todos here
+
+        ## checks if added user is in the server 
+
+        
+        ## check if user exists if not create
+        
+        messagingUserRef = users_ref.child(message.author.id)
+
+        if messagingUserRef.get() == None: 
+            messagingUserRef.set({
+                'user_name': message.author,
+                'reciever': [userToBeAdded]
+            })
+        else: 
+            messagingUserRef.update({
+                'reciever': []
+            })
+
 
 
 
