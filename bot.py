@@ -21,8 +21,14 @@ firebase_admin.initialize_app(cred, {
 ref = db.reference('/')
 users_ref = ref.child('users')
 
-new_user_ref = users_ref.child("bob2").get()
+new_user_ref = users_ref.child("bob2/messages").get()
+new_user_ref.append("hi")
 
+
+update_ref = users_ref.child("bob2") 
+update_ref.update({
+    'messages': new_user_ref
+    })
 '''
 new_user_ref.set({
     'messages': ["hello", "my", "name", "is", "josh"]
@@ -76,27 +82,36 @@ async def on_voice_state_update(member, before, after):
 async def on_message(message): 
     if message.author == client.user:
         return 
+
     if message.content.startswith("-notifyMe"):
-        userToBeAdded = message.content.split("-notifyMe ",1)[1]
 
-        ## checks if added user is in the server 
+        nameOfUser = message.content.split("-notifyMe ",1)[1]
 
+        ## checks if added user is in the server
+        newUser = None
+        async for user in message.guild.fetch_members(limit = message.guild.member_count):
+            if user.name == nameOfUser:
+                newUser = user
+
+        if newUser == None:
+            await message.channel.send("Could not find user, make sure you typed name correctly") 
+            return
         
         ## check if user exists if not create
         
-        messagingUserRef = users_ref.child(message.author.id)
+        newUserDbRef = users_ref.child(str(newUser.id))
 
-        if messagingUserRef.get() == None: 
-            messagingUserRef.set({
-                'user_name': message.author,
-                'reciever': [userToBeAdded]
+        if newUserDbRef.get() == None: 
+            newUserDbRef.set({
+                'user_name': newUser.name,
+                'reciever': [message.author.id]
             })
         else: 
-            messagingUserRef.update({
-                'reciever': []
+            user_reciever_list = newUserDbRef.child("reciever")
+            current_list = user_reciever_list.get() 
+            current_list.append(message.author.id)
+            user_reciever_list.update({
+                current_list
             })
-
-
-
 
 client.run(token)
