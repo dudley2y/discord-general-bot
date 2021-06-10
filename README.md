@@ -19,7 +19,7 @@ Make sure you do ` source ./start.sh ` before any dev
 ## Usage 
 
 Currently the bot can 
-1. notify users when someone join's ILC 
+1. notify users when someone join a voicecall
 2. nothing else hehe
 
 Future plan
@@ -38,7 +38,7 @@ python bot.py test
 
 ## Architectures and Algorithms 
 
-### message service
+### message service v1 -> Done
 ```python
 user_joined = user that joined
 users_online[] 
@@ -50,28 +50,29 @@ for person in message file:
         message person that user joined 
 ```
 
-### message service v2 <- in progress
+### message service v2 -> Done (Current) 
 The user can opt into whoever they want notified, ideally be server independent
 
 Preprocess: 
 Member can use command  `-notifyMe [user] ` to add a user to their notify list 
 
 ```
-1. check if user is in server
+1. check if user is in server and user is not self
 2. check if user.id is in database, if not add to database
-3. add user to Member's id to user's reciever list 
+3. check if member is already in list, if not then add member.id to users recieve list
 ```
 
 Algorithm 
 ```
-1. recieve user joined call 
-2. for all recievers of user send message
+1. recieve user joined call  
+2. see if user is in notification database
+3. for all recievers of user send message
 ```
 
 database structure
 ```
     User: 
-        recievers: 
+        recievers: ## everyone that gets a message when user joins a call
             1. 
             2. 
     User:
