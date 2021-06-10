@@ -13,6 +13,7 @@ python3 -m pip install -U discord.py
 There will be 2 environment variables necessary to update in start.sh
 1. DISCORD_BOT_TOKEN = THE DISCORD BOT TOKEN
 2. DISCORD_BOT_TEST_TOKEN = THE DISCORD TEST BOT TOKEN
+3. GOOGLE_APPLICATION_CREDENTIALS=path/to/service-account-file.json
 
 Make sure you do ` source ./start.sh ` before any dev 
 ## Usage 
@@ -57,14 +58,14 @@ Member can use command  `-notifyMe [user] ` to add a user to their notify list
 
 ```
 1. check if user is in server
-2. check if Member.id is in database, if not add to database
-3. add user to Member's id to reciever list 
+2. check if user.id is in database, if not add to database
+3. add user to Member's id to user's reciever list 
 ```
 
 Algorithm 
 ```
 1. recieve user joined call 
-2. for all recievers: send message
+2. for all recievers of user send message
 ```
 
 database structure
