@@ -30,7 +30,7 @@ async def on_ready():
 @client.event
 async def on_voice_state_update(member, before, after):
 
-    if before.channel is None and after.channel is not None:    ## "member" joins a voice channel
+    if after.channel is not None:    ## "member" joins a voice channel
         userJoinedRef = users_ref.child(str(member.id)) 
         if userJoinedRef:
             recievers = userJoinedRef.child("reciever").get() 
