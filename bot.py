@@ -30,7 +30,7 @@ async def on_ready():
 @client.event
 async def on_voice_state_update(member, before, after):
 
-    if after.channel is not None:                                                                                                     ## "member" joins a voice channel
+    if after.channel is not None and after.channel!=before.channel:                                                                                                     ## "member" joins a voice channel
         userJoinedRef = users_ref.child(str(member.id)) 
         if userJoinedRef:                                                                                                             ## if the person exists in the database we want to send others a message
             recievers = userJoinedRef.child("reciever").get()                                                                          
