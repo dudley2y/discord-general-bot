@@ -2,6 +2,7 @@ import discord
 import os
 import sys
 import base64
+import atexit 
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
@@ -16,9 +17,11 @@ client = discord.Client(intents=intents)
 google_credentials = os.getenv("GOOGLE_APPLICATION_CREDENTIALS").encode("utf-8")
 decoded_credentials = base64.decodebytes(google_credentials)
 
-with open("google_credentials.json", "wb") as google_credentials: 
+with open(os.getenv("GOOGLE_FILE_PATH"), "wb") as google_credentials: 
     google_credentials.write(decoded_credentials)
 
+
+atexit.register(os.remove, os.getenv("GOOGLE_FILE_PATH"))
 cred = credentials.Certificate(os.getenv("GOOGLE_FILE_PATH"))
 
 firebase_admin.initialize_app(cred, {
