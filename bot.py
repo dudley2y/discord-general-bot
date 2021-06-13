@@ -57,7 +57,9 @@ async def on_message(message):
     if message.content.startswith("-notifyMe"):                                                       
 
         nameOfUser = message.content.split("-notifyMe ",1)[1]                                            ## if the user is oneself, no point in adding self
-
+        if nameOfUser == client.user.name: 
+            await message.channel.send("Nice try, better luck next time")
+            return 
         if nameOfUser == message.author.name:                                             
             await message.channel.send("Cannot add self to user list")
             return
