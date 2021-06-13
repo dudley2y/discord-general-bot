@@ -83,6 +83,8 @@ async def on_message(message):
                 'user_name': newUser.name,
                 'reciever': [message.author.id]
             })
+
+            await message.channel.send("You have subscribed to " + nameOfUser)
         else: 
             user_reciever_list = newUserDbRef.child("reciever").get()                                  ## grabs old list of recievers
 
@@ -94,5 +96,7 @@ async def on_message(message):
             newUserDbRef.update({                                                                      ## updates it in database
                 "reciever": user_reciever_list
             })
+
+            await message.channel.send("You have subscribed to " + nameOfUser)
 
 client.run(token)
