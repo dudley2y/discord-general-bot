@@ -1,6 +1,7 @@
 import discord
 import os
 import sys
+import base64
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
@@ -12,7 +13,13 @@ intents.messages = True
 intents.voice_states = True
 client = discord.Client(intents=intents)
 
-cred = credentials.Certificate(os.getenv("GOOGLE_APPLICATION_CREDENTIALS"))
+google_credentials = os.getenv("GOOGLE_APPLICATION_CREDENTIALS").encode("utf-8")
+decoded_credentials = base64.decodebytes(google_credentials)
+
+with open("google_credentials.json", "wb") as google_credentials: 
+    google_credentials.write(decoded_credentials)
+
+cred = credentials.Certificate(os.getenv("GOOGLE_FILE_PATH"))
 
 firebase_admin.initialize_app(cred, {
     'databaseURL': 'https://discordbot-83d1d-default-rtdb.firebaseio.com/'
