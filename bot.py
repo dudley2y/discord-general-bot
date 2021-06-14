@@ -3,6 +3,7 @@ import os
 import sys
 import base64
 import atexit 
+from datetime import datetime
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
@@ -30,6 +31,7 @@ firebase_admin.initialize_app(cred, {
 
 ref = db.reference('/')
 users_ref = ref.child('users')
+liveUsers_ref = ref.child('live')
 
 token = os.getenv("DISCORD_BOT_TEST_TOKEN") if sys.argv[-1] == "test" else os.getenv("DISCORD_BOT_TOKEN") 
 
@@ -37,15 +39,23 @@ token = os.getenv("DISCORD_BOT_TEST_TOKEN") if sys.argv[-1] == "test" else os.ge
 async def on_ready():
     print("We have logged in as " + client.user.name)
 
+
 @client.event
 async def on_voice_state_update(member, before, after):
+    newMemberLiveRef = liveUsers_ref.child(str(member.id))
+    if before.channel is None and after.channel is not None:
+        newMemberLiveRef.set({"timeJoined": datetime.now().strftime("%m/%d/%Y, %H:%M:%S")})
+
+    if before.channel is not None and after.channel is None:
+       newMemberLiveRef.delete() 
 
     if after.channel is not None and after.channel!=before.channel:                                                                                                     ## "member" joins a voice channel
         userJoinedRef = users_ref.child(str(member.id)) 
         if userJoinedRef:                                                                                                             ## if the person exists in the database we want to send others a message
             recievers = userJoinedRef.child("reciever").get()                                                                          
             for reciever in recievers:                                                                                                ## for all users in the recieved list, send a message  
-                user = client.get_user(reciever) 
+                user = client.get_user(reciever)
+                if liveUsers_ref.child(str(reciever)).get() is not None: return 
                 await user.send(str(member.name) + " joined " + after.channel.guild.name + " at " + after.channel.name)
 
 
