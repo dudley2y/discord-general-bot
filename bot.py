@@ -35,5 +35,7 @@ async def on_message(message):
     if message.content.startswith("-notifyMe"):                                                       
         await notifyMe.notifyPreProcessing(client, message, users_ref)
 
+    if message.content.startswith("-playVideo"):
+        pass 
 token = os.getenv("DISCORD_BOT_TEST_TOKEN") if sys.argv[-1] == "test" else os.getenv("DISCORD_BOT_TOKEN")
 client.run(token)
