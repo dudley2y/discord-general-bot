@@ -1,6 +1,6 @@
 # General Discord Bot
 
-This is a general bot deployed on heroku that I'm gonna do whatever I feel like doing :-) 
+This is a general bot deployed on heroku that I'm gonna do whatever I feel like doing :=) 
 
 ## Installation and Prerequisites  
 
