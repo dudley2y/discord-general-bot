@@ -5,6 +5,7 @@ from firebase_admin import db
 
 import notifyMe  
 import database
+from decouple import config
 
 intents = discord.Intents.default()
 intents.presences = True
@@ -37,5 +38,5 @@ async def on_message(message):
 
     if message.content.startswith("-playVideo"):
         pass 
-token = os.getenv("DISCORD_BOT_TEST_TOKEN") if sys.argv[-1] == "test" else os.getenv("DISCORD_BOT_TOKEN")
+token = config("DISCORD_BOT_TEST_TOKEN") if sys.argv[-1] == "test" else config("DISCORD_BOT_TOKEN")
 client.run(token)
