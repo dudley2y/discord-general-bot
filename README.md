@@ -5,18 +5,21 @@ This is a general bot deployed on heroku that I'm gonna do whatever I feel like 
 
 ## Installation and Prerequisites  
 
-Use the package manager pip to install discord.py 
+Use the package manager pip to install
 
 ```bash
-python3 -m pip install -U discord.py
+pip install -U discord.py
+pip install --user firebase-admin
+pip install python-decouple
 ```
 
-There will be 2 environment variables necessary to update in start.sh
+When running for the first time, there will be 4 environment variables necessary:
 1. DISCORD_BOT_TOKEN = THE DISCORD BOT TOKEN
 2. DISCORD_BOT_TEST_TOKEN = THE DISCORD TEST BOT TOKEN
 3. GOOGLE_APPLICATION_CREDENTIALS=path/to/service-account-file.json
+4. GOOGLE_FILE_PATH="file name to when running store credentials" 
 
-Make sure you do ` source ./start.sh ` before any dev 
+Make sure you do run the first time with a `init` flag
 ## Usage 
 
 Currently the bot can 
@@ -24,7 +27,7 @@ Currently the bot can
 2. nothing else hehe
 
 Future plan
-1. Stream youtube videos
+1. Stream youtube videos <- in progress
 
 One can run the main bot using 
 ```bash
@@ -34,6 +37,11 @@ python bot.py
 One can test using 
 ```bash
 python bot.py test
+```
+
+Frist time running in test mode to add config 
+```bash
+python bot.py init test
 ```
 
 
