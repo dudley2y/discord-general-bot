@@ -19,6 +19,12 @@ if initialize:
     print ("Init Setup")
     
     google_credentials_file = input("Enter Google Application Credentials: ")
+    with open(google_credentials_file) as gFile:
+         jsonData = json.load(gFile) 
+         jsonCred = json.dumps(jsonData).encode("utf-8") 
+         envFile.write("GOOGLE_APPLICATION_CREDENTIALS="+ jsonCred + "\n")
+
+
     envFile.write("GOOGLE_APPLICATION_CREDENTIALS="+google_credentials_file+"\n")
 
     filePath = input("Enter Google File Path: ")
@@ -32,16 +38,11 @@ if initialize:
 
     envFile.close()
 
-jsonPath = config("GOOGLE_APPLICATION_CREDENTIALS")
-
-jsonFile = open(jsonPath)
-jsonData = json.load(jsonFile)
-jsonCred = json.dumps(jsonData).encode("utf-8")
 
 filePath = config("GOOGLE_FILE_PATH")
 
 with open(filePath, "wb") as google_credentials:
-    google_credentials.write(jsonCred)
+    google_credentials.write(config("GOOGLE_APPLICATION_CREDENTIALS"))
 
 atexit.register(os.remove, filePath)
 cred = credentials.Certificate(filePath)
