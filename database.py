@@ -41,7 +41,7 @@ if initialize:
 
 filePath = config("GOOGLE_FILE_PATH")
 
-with open(filePath, "wb") as google_credentials:
+with open(filePath, "w") as google_credentials:
     google_credentials.write(config("GOOGLE_APPLICATION_CREDENTIALS"))
 
 atexit.register(os.remove, filePath)
