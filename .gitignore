@@ -1,4 +1,5 @@
 start.sh
+start-sample.sh
 google_credentials.json
 .env
 __pycache__
