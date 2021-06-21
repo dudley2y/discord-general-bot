@@ -8,24 +8,16 @@ import sys
 import json
 from decouple import config
 
-initialize = False
 
-for x in sys.argv:
-    if x == "init":
-        initialize = True
-
-if initialize:
+if "init" in sys.argv:
     envFile = open(".env", "w")
     print ("Init Setup")
     
     google_credentials_file = input("Enter Google Application Credentials: ")
     with open(google_credentials_file) as gFile:
-         jsonData = json.load(gFile) 
-         jsonCred = json.dumps(jsonData).encode("utf-8") 
-         envFile.write("GOOGLE_APPLICATION_CREDENTIALS="+ jsonCred + "\n")
-
-
-    envFile.write("GOOGLE_APPLICATION_CREDENTIALS="+google_credentials_file+"\n")
+        data = json.loads(gFile.read())
+        jsonData = json.dumps(data)
+        envFile.write("GOOGLE_APPLICATION_CREDENTIALS="+ jsonData+ "\n")
 
     filePath = input("Enter Google File Path: ")
     envFile.write("GOOGLE_FILE_PATH="+filePath+"\n")
