@@ -10,6 +10,9 @@ from decouple import config
 
 
 if "init" in sys.argv:
+    if os.path.exists(".env"):
+        os.remove(".env") 
+
     envFile = open(".env", "w")
     print ("Init Setup")
     
@@ -18,6 +21,8 @@ if "init" in sys.argv:
         data = json.loads(gFile.read())
         jsonData = json.dumps(data)
         envFile.write("GOOGLE_APPLICATION_CREDENTIALS="+ jsonData+ "\n")
+
+    os.remove(google_credentials_file)
 
     filePath = input("Enter Google File Path: ")
     envFile.write("GOOGLE_FILE_PATH="+filePath+"\n")
@@ -29,7 +34,6 @@ if "init" in sys.argv:
     envFile.write("DISCORD_BOT_TEST_TOKEN="+botTestToken+"\n")
 
     envFile.close()
-
 
 filePath = config("GOOGLE_FILE_PATH")
 
