@@ -8,24 +8,21 @@ import sys
 import json
 from decouple import config
 
-initialize = False
 
-for x in sys.argv:
-    if x == "init":
-        initialize = True
+if "init" in sys.argv:
+    if os.path.exists(".env"):
+        os.remove(".env") 
 
-if initialize:
     envFile = open(".env", "w")
     print ("Init Setup")
     
     google_credentials_file = input("Enter Google Application Credentials: ")
     with open(google_credentials_file) as gFile:
-         jsonData = json.load(gFile) 
-         jsonCred = json.dumps(jsonData).encode("utf-8") 
-         envFile.write("GOOGLE_APPLICATION_CREDENTIALS="+ jsonCred + "\n")
+        data = json.loads(gFile.read())
+        jsonData = json.dumps(data)
+        envFile.write("GOOGLE_APPLICATION_CREDENTIALS="+ jsonData+ "\n")
 
-
-    envFile.write("GOOGLE_APPLICATION_CREDENTIALS="+google_credentials_file+"\n")
+    os.remove(google_credentials_file)
 
     filePath = input("Enter Google File Path: ")
     envFile.write("GOOGLE_FILE_PATH="+filePath+"\n")
@@ -37,7 +34,6 @@ if initialize:
     envFile.write("DISCORD_BOT_TEST_TOKEN="+botTestToken+"\n")
 
     envFile.close()
-
 
 filePath = config("GOOGLE_FILE_PATH")
 
