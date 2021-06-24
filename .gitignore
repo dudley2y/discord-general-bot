@@ -2,4 +2,6 @@ start.sh
 start-sample.sh
 google_credentials.json
 .env
-__pycache__
+__pycache_i_
+.vscode
+discordBot*.json
