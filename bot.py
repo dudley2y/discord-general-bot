@@ -26,13 +26,13 @@ async def on_ready():
 
 @client.event
 async def on_voice_state_update(member, before, after):
-    await notifyMe.notifyUsers(client, member, before, after, users_ref, liveUsers_ref)
+    # await notifyMe.notifyUsers(client, member, before, after, users_ref, liveUsers_ref)
     if before.channel is None and after.channel is not None:
         name = member.display_name
-        await member.guild.system_channel.send('{} left'.format(name))
+        await member.guild.get_channel(858592742367821824).send('Hello, {}!'.format(name))
     if after.channel is None and before.channel is not None:
         name = member.display_name
-        await member.guild.system_channel.send('{} left'.format(name))
+        await member.guild.get_channel(858592742367821824).send('Goodbye, {}!'.format(name))
 
 
 @client.event
