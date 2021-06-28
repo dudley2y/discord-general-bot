@@ -21,22 +21,26 @@ liveUsers_ref = ref.child('live')
 
 @client.event
 async def on_ready():
-    print("We have logged in!!!")
+    print("We have logged in as "+ client.user.name + "!!!")
 
 
 @client.event
 async def on_voice_state_update(member, before, after):
     # await notifyMe.notifyUsers(client, member, before, after, users_ref, liveUsers_ref)
-    if before.channel is None and after.channel is not None:
+    if after.channel is not None:
         name = member.display_name
-        await member.guild.get_channel(858592742367821824).send('Hello, {}!'.format(name))
+        textChannelList = member.guild.text_channels
+        for textChannel in textChannelList:
+            if textChannel.name == 'bot-log':
+                await textChannel.send('Hello, '+ name + '!')
+                break
     if after.channel is None and before.channel is not None:
         name = member.display_name
-        await member.guild.get_channel(858592742367821824).send('Goodbye, {}!'.format(name))
+        await member.guild.text_channels[1].send('Goodbye, '+ name + '!')
 
 
 @client.event
-async def on_message(message): 
+async def on_message(message):
     if message.author == client.user:
         return 
 
@@ -48,6 +52,6 @@ async def on_message(message):
 
     if message.content.startswith("-reply"):
         await message.channel.send('Bot sent a message')
-        
+
 token = config("DISCORD_BOT_TEST_TOKEN") if sys.argv[-1] == "test" else config("DISCORD_BOT_TOKEN")
 client.run(token)
