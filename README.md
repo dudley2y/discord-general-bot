@@ -13,6 +13,8 @@ pip install --user firebase-admin
 pip install python-decouple
 ```
 
+Install FFMPEG from https://www.ffmpeg.org/download.html
+
 When running for the first time, there will be 4 environment variables necessary:
 1. DISCORD_BOT_TOKEN = THE DISCORD BOT TOKEN
 2. DISCORD_BOT_TEST_TOKEN = THE DISCORD TEST BOT TOKEN
