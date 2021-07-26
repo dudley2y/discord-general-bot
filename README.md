@@ -91,3 +91,31 @@ database structure
 
 ```
     
+## Commands
+
+You must first create a text channel called `bot-commands` in order to use any
+of the following commands. This can be changed in `bot.py`
+
+#### -setAlarm (minutes) (youtube URL)    
+Input a time in minute between 1 and 180 and sets the bot to activate an alarm once the selected time has passed. You can also put a youtube URL after the minutes to select a unique video for the alarm.
+
+#### -listAlarms
+List all alarms currently in the queue and provides alarm number, the name of the user who made it, and the time the alarm will go off. The time listed is based on the timezone set, default is UTC.
+
+#### -delAlarm (alarm number)
+Delete the alarm specified by the user. Alarm number is dictated by placement in the alarm list.
+
+#### -clearList    
+Clears the entire alarm list.
+
+#### -setTZ (timezone offset)
+Changes the displayed time according to the offset given. Based on UTC timezones, only offsets between -12 and 14 are allowed.
+
+#### -setDefault (youtube URL)
+Changes the default video that plays after the alarm time has elapsed.
+
+#### -displayFormat
+Toggle between 12 and 24-hour display format
+
+#### -silence
+Disconnects the bot from the voice channel it is currently connected to.
