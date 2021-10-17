@@ -67,6 +67,7 @@ async def notifyUsers(client, member, before, after, users_ref, liveUsers_ref):
         if userJoinedRef:  
             recievers = userJoinedRef.child("reciever").get()  
             for reciever in recievers:
-                user = client.get_user(reciever)
+                user = await client.fetch_user(reciever)
+                print(user)
                 if liveUsers_ref.child(str(reciever)).get() is not None: return 
                 await user.send(str(member.name) + " joined " + after.channel.guild.name + " at " + after.channel.name)
