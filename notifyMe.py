@@ -43,6 +43,8 @@ async def notifyPreProcessing(client, message,  users_ref):
             "reciever": user_reciever_list
         })
 
+        await message.channel.send("You have subscribed to " + nameOfUser)
+
 
 ''' 
 notifyUsers( discordClient, User, voiceState, voiceState, database users_ref, database live_users_ref) 
